@@ -1,29 +1,18 @@
-import qrcode
-from PIL import Image
-import base64
+from MyQR import myqr
 
-# 1. Чтение изображения и преобразование в байты
-image_path = 'foto/img.png'  # Путь к вашему изображению
-with open(image_path, "rb") as image_file:
-    # Преобразуем изображение в байтовую строку и кодируем в base64
-    image_bytes = image_file.read()
-    image_base64 = base64.b64encode(image_bytes).decode('utf-8')
-
-# 2. Генерация QR-кода из закодированных данных
-qr = qrcode.QRCode(
-    version=1,  # Версия определяет размер QR-кода
-    error_correction=qrcode.constants.ERROR_CORRECT_H,  # Высокий уровень коррекции ошибок
-    box_size=10,  # Размер ячеек QR-кода
-    border=4  # Граница вокруг QR-кода
-)
-qr.add_data(image_base64)
-qr.make(fit=True)
-
-# 3. Создание изображения QR-кода
-qr_image = qr.make_image(fill='black', back_color='white')
-
-# 4. Сохранение изображения QR-кода
-output_path = 'qr_from_image.png'  # Укажите путь для сохранения QR-кода
-qr_image.save(output_path)
-
-print(f"QR-код с данными изображения успешно создан и сохранён как {output_path}!")
+myqr.run(
+    words="http://ege-drive.ru",
+    version=20, level="H",
+    picture="foto/img_1.png",
+    colorized=True,
+    save_name='img-from-img/samurai.png',
+    contrast=3.0,
+    brightness=10.0)
+# Dynamic pictures should use gif format pictures
+# words parameter is to specify the content of the QR code
+# version parameter is the control side length, it is an int type, the range is 1-40, the larger the number, the larger the side length
+# level is the error correction level, the range is L, M, Q, H, increasing from left to right
+# picture parameter is to specify the name of the picture file to be used, the picture here is in the directory that this python file belongs to
+# colorized parameter is to specify that the generated QR code image is colored, if it is False or not set, the generated image is black and white
+# The contrast parameter is to set the contrast of the picture
+# The brightness parameter is to adjust the brightness of the picture
