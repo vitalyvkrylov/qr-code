@@ -1,29 +1,30 @@
-from PIL import Image
 import qrcode
+from PIL import Image
 
-data = "https://example.com"
+logo_file_name = 'logo/sample_logo.png'
+data_to_encode = "https://ege-drive.ru"
 
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=4
+qr_code = qrcode.QRCode(
+    error_correction=qrcode.constants.ERROR_CORRECT_H
 )
+qr_code.add_data(data_to_encode)
+qr_code.make()
 
-# Открываем сгенерированный QR-код
-img = qr.make_image(fill='white', back_color='white')
-img = img.convert("RGB")
+# qr code image
+qr_code_image = qr_code.make_image().convert('RGB')
 
-# Открываем изображение логотипа
-logo = Image.open('logo/logo.png')
+# logo image 
+logo = Image.open(logo_file_name)
 
-# Изменяем размер логотипа под QR-код
-box = (img.size[0] // 8, img.size[1] // 8)
-logo = logo.resize(box)
+# populate the position of the logo to center of QR code
+logo_x_position = (qr_code_image.size[0] - logo.size[0]) // 2
+logo_y_position = (qr_code_image.size[1] - logo.size[1]) // 2
+logo_position = (logo_x_position, logo_y_position)
 
-# Вставляем логотип в центр QR-кода
-pos = (-(img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2)
-img.paste(logo, pos)
+# insert logo image into qr code image
+qr_code_image.paste(logo, logo_position)
 
-# Сохраняем QR-код с логотипом
-img.save('img-with-logo/qr_with_logo.png')
+# save QR code image
+qr_code_image.save('img-with-logo/qr-with-logo.png')
+
+print('QR code with logo successful generated as toricode_qr.png')
