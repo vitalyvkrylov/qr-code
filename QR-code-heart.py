@@ -25,7 +25,7 @@ def create_star_shape(size):
 
 
 # Пример использования
-size = 400  # Размер звезды в пикселях
+size = 100  # Размер звезды в пикселях
 star_image = create_star_shape(size)
 
 # Сохраняем изображение
