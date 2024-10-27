@@ -1,10 +1,10 @@
-from MyQR import myqr
 from PIL import Image, ImageDraw
-
+from MyQR import myqr
 
 def create_star_shape(size):
-    """Создает маску в форме звезды."""
-    star = Image.new('L', (size, size), 0)  # 'L' - режим оттенков серого
+    """Создает изображение звезды заданного размера."""
+    # Создаем новое изображение с белым фоном
+    star = Image.new('RGB', (size, size), (255, 255, 255))  # 'RGB' для цветного изображения
     draw = ImageDraw.Draw(star)
 
     # Координаты для рисования звезды
@@ -19,40 +19,23 @@ def create_star_shape(size):
         (size // 4, size * 3 // 4)  # левая нижняя
     ]
 
-    draw.polygon(points, fill=1)  # Рисуем звезду
+    draw.polygon(points, fill=(255, 215, 0))  # Рисуем звезду золотистым цветом
 
     return star
 
 
-def create_qr_code(data, shape_size):
-    """Создает QR-код и накладывает маску в форме звезды."""
-    # Генерация QR-кода с помощью MyQR
-    myqr.run(
-        words=data,
-        version=1,
-        level='H',
-        save_name='temp_qr.png'
-    )
-
-    # Открываем сгенерированный QR-код
-    qr_image = Image.open('temp_qr.png')
-
-    # Создаем маску в форме звезды
-    star_shape = create_star_shape(shape_size)
-
-    # Создаем новое изображение с белым фоном
-    qr_with_star = Image.new('L', (shape_size, shape_size), 255)
-    qr_image = qr_image.resize((shape_size, shape_size))  # Изменяем размер QR-кода
-    qr_with_star.paste(qr_image, (0, 0), star_shape)  # Накладываем QR-код на звезду
-
-    return qr_with_star
-
-
 # Пример использования
-data = 'https://example.com'
-shape_size = 400  # Размер маски звезды в пикселях
-qr_star_image = create_qr_code(data, shape_size)
+size = 400  # Размер звезды в пикселях
+star_image = create_star_shape(size)
 
 # Сохраняем изображение
-qr_star_image.save('qr_star.png')
-qr_star_image.show()  # Показываем изображение
+star_image.save('star_image.png')
+
+myqr.run(
+    words="http://ege-drive.ru",
+    version=20, level="H",
+    picture="star_image.png",
+    colorized=True,
+    save_name='star_qr.png',
+    contrast=3.0,
+    brightness=10.0)
