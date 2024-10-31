@@ -3,9 +3,9 @@ from MyQR import myqr
 myqr.run(
     words="http://ege-drive.ru",
     version=20, level="H",
-    picture="foto/img_1.png",
+    picture="qr-from-foto/img_1.png",
     colorized=True,
-    save_name='img-from-img/samurai.png',
+    save_name='img-from-qr-from-foto/samurai.png',
     contrast=3.0,
     brightness=10.0)
 # Dynamic pictures should use gif format pictures

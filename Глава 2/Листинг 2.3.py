@@ -1,18 +1,13 @@
-from MyQR import myqr
+from MyQR import myqr  # Импортируем модуль myqr из библиотеки MyQR для создания QR-кодов
 
-myqr.run(
-    words="http://ege-drive.ru",
-    version=20, level="H",
-    picture="foto/img_1.png",
-    colorized=True,
-    save_name='img-from-img/samurai.png',
-    contrast=3.0,
-    brightness=10.0)
-# Dynamic pictures should use gif format pictures
-# words parameter is to specify the content of the QR code
-# version parameter is the control side length, it is an int type, the range is 1-40, the larger the number, the larger the side length
-# level is the error correction level, the range is L, M, Q, H, increasing from left to right
-# picture parameter is to specify the name of the picture file to be used, the picture here is in the directory that this python file belongs to
-# colorized parameter is to specify that the generated QR code image is colored, if it is False or not set, the generated image is black and white
-# The contrast parameter is to set the contrast of the picture
-# The brightness parameter is to adjust the brightness of the picture
+# Генерация QR-кода с настройками
+myqr.run(  # Запускаем функцию создания QR-кода с заданными параметрами
+    words="http://ege-drive.ru",  # Ссылка, которая будет закодирована в QR-код
+    version=20,  # Устанавливаем размер QR-кода (от 1 до 40), 20 – более крупный QR-код
+    level="H",  # Уровень коррекции ошибок H (восстанавливает до 30% данных при повреждении)
+    picture="img-from-foto/samurai.png",  # Изображение, которое будет наложено на QR-код
+    colorized=True,  # Цветной режим для QR-кода; если False, QR-код будет чёрно-белым
+    save_name='qr-from-foto/qr-from-foto.png',  # Имя файла для сохранения результата
+    contrast=3.0,  # Контрастность QR-кода и фона, где 1.0 — исходное значение
+    brightness=10.0  # Яркость QR-кода и фона, где 1.0 — исходное значение
+)
