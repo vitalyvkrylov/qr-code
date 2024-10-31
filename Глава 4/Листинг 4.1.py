@@ -35,13 +35,13 @@ draw = ImageDraw.Draw(image)
 draw_star(draw, image_width // 2, image_height // 2, star_radius, star_color)
 
 # Сохранение изображения
-image.save("star_image.png")
+image.save("img/star_image.png")
 
 myqr.run(
     words="http://ege-drive.ru",
     version=20, level="H",
-    picture="star_image.png",
+    picture="img/star_image.png",
     colorized=True,
-    save_name='star_qr.png',
+    save_name='qr/star_qr.png',
     contrast=3.0,
     brightness=10.0)
