@@ -1,20 +1,28 @@
-import qrcode
-
-# Данные для кодирования
-data = "https://example.com"
+import qrcode  # Импортируем библиотеку для создания QR-кодов
+from PIL import Image  # Импортируем класс Image из библиотеки Pillow для работы с изображениями
 
 # Генерация QR-кода
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=4
+qr = qrcode.QRCode(  # Создаём объект QR-кода с указанными параметрами
+    version=1,  # Размер QR-кода: 1 означает 21x21 модулей
+    error_correction=qrcode.constants.ERROR_CORRECT_L,  # Уровень коррекции ошибок L, восстанавливает до 7% данных
+    box_size=10,  # Размер каждого модуля в QR-коде
+    border=4  # Толщина границы QR-кода в модулях
 )
-qr.add_data(data)
-qr.make(fit=True)
 
-# Создание и сохранение изображения
+# Открываем сгенерированный QR-код
+img = qr.make_image(fill='black', back_color='white')  # Создаём QR-код с чёрными модулями на белом фоне
+img = img.convert("RGB")  # Преобразуем изображение в формат RGB для работы с логотипом
 
-img = qr.make_image(fill='blue', back_color='yellow')
-img.save('img-color/qr_code-color.png')
+# Открываем изображение логотипа
+logo = Image.open('logo/logo.png')  # Загружаем изображение логотипа из файла logo.png
 
+# Изменяем размер логотипа под QR-код
+box = (img.size[0] // 4, img.size[1] // 4)  # Размер логотипа делаем в четверть от размера QR-кода
+logo = logo.resize(box)  # Изменяем размер логотипа в соответствии с заданными пропорциями
+
+# Вставляем логотип в центр QR-кода
+pos = ((img.size[0] - logo.size[0]) // 2, (img.size[1] - logo.size[1]) // 2)  # Рассчитываем позицию центра для логотипа
+img.paste(logo, pos)  # Вставляем логотип в центр QR-кода на рассчитанную позицию
+
+# Сохраняем QR-код с логотипом
+img.save('img/qr_with_logo.png')  # Сохраняем результат как изображение qr_with_logo.png
