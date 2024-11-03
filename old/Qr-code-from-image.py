@@ -3,7 +3,7 @@ from MyQR import myqr
 myqr.run(
     words="http://ege-drive.ru",
     version=20, level="H",
-    picture="qr-from-foto/img_1.png",
+    picture="qr-from-foto/samurai.png",
     colorized=True,
     save_name='img-with-logo-from-qr-from-foto/samurai.png',
     contrast=3.0,
