@@ -9,12 +9,12 @@ data4 = "https://inf-ege.sdamgia.ru/"  # URL для кодирования в п
 data5 = "https://inf-oge.sdamgia.ru/"  # URL для кодирования в шестой QR-код
 
 # Пути и имена файлов для сохранения каждого QR-кода
-name_qr_code0 = 'img-with-logo/qr_0.png'  # Путь и имя файла для сохранения первого QR-кода
-name_qr_code1 = 'img-with-logo/qr_1.png'  # Путь и имя файла для сохранения второго QR-кода
-name_qr_code2 = 'img-with-logo/qr_2.png'  # Путь и имя файла для сохранения третьего QR-кода
-name_qr_code3 = 'img-with-logo/qr_3.png'  # Путь и имя файла для сохранения четвертого QR-кода
-name_qr_code4 = 'img-with-logo/qr_4.png'  # Путь и имя файла для сохранения пятого QR-кода
-name_qr_code5 = 'img-with-logo/qr_5.png'  # Путь и имя файла для сохранения шестого QR-кода
+name_qr_code0 = 'img-all/qr_0.png'  # Путь и имя файла для сохранения первого QR-кода
+name_qr_code1 = 'img-all/qr_1.png'  # Путь и имя файла для сохранения второго QR-кода
+name_qr_code2 = 'img-all/qr_2.png'  # Путь и имя файла для сохранения третьего QR-кода
+name_qr_code3 = 'img-all/qr_3.png'  # Путь и имя файла для сохранения четвертого QR-кода
+name_qr_code4 = 'img-all/qr_4.png'  # Путь и имя файла для сохранения пятого QR-кода
+name_qr_code5 = 'img-all/qr_5.png'  # Путь и имя файла для сохранения шестого QR-кода
 
 # Генерация QR-кодов
 qr0 = qrcode.QRCode(  # Создаём объект QR-кода для первого URL с параметрами:
@@ -84,9 +84,9 @@ img4 = qr4.make_image(fill='black', back_color='white')  # Создаём изо
 img5 = qr5.make_image(fill='black', back_color='white')  # Создаём изображение шестого QR-кода
 
 # Сохранение изображений в указанные файлы
-img0.save(name_qr_code0)  # Сохраняем первый QR-код в файл img-with-logo/qr_0.png
-img1.save(name_qr_code1)  # Сохраняем второй QR-код в файл img-with-logo/qr_1.png
-img2.save(name_qr_code2)  # Сохраняем третий QR-код в файл img-with-logo/qr_2.png
-img3.save(name_qr_code3)  # Сохраняем четвертый QR-код в файл img-with-logo/qr_3.png
-img4.save(name_qr_code4)  # Сохраняем пятый QR-код в файл img-with-logo/qr_4.png
-img5.save(name_qr_code5)  # Сохраняем шестой QR-код в файл img-with-logo/qr_5.png
+img0.save(name_qr_code0)  # Сохраняем первый QR-код в файл img/qr_0.png
+img1.save(name_qr_code1)  # Сохраняем второй QR-код в файл img/qr_1.png
+img2.save(name_qr_code2)  # Сохраняем третий QR-код в файл img/qr_2.png
+img3.save(name_qr_code3)  # Сохраняем четвертый QR-код в файл img/qr_3.png
+img4.save(name_qr_code4)  # Сохраняем пятый QR-код в файл img/qr_4.png
+img5.save(name_qr_code5)  # Сохраняем шестой QR-код в файл img/qr_5.png
