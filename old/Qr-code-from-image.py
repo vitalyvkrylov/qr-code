@@ -5,7 +5,7 @@ myqr.run(
     version=20, level="H",
     picture="qr-from-foto/img_1.png",
     colorized=True,
-    save_name='img-from-qr-from-foto/samurai.png',
+    save_name='img-with-logo-from-qr-from-foto/samurai.png',
     contrast=3.0,
     brightness=10.0)
 # Dynamic pictures should use gif format pictures

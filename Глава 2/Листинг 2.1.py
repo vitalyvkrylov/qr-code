@@ -16,4 +16,4 @@ qr.make(fit=True)  # Оптимизируем размер QR-кода для д
 
 # Создание и сохранение изображения
 img = qr.make_image(fill='blue', back_color='yellow')  # Создаём изображение QR-кода с синим цветом и жёлтым фоном
-img.save('img-color/qr_code-color.png')  # Сохраняем изображение в папке 'img-color' с названием 'qr_code-color.png'
+img.save('img-with-logo-color/qr_code-color.png')  # Сохраняем изображение в папке 'img-with-logo-color' с названием 'qr_code-color.png'

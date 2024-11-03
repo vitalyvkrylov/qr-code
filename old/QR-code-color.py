@@ -16,4 +16,4 @@ qr.make(fit=True)
 # Создание и сохранение изображения
 
 img = qr.make_image(fill='blue', back_color='yellow')
-img.save('img-color/qr_code-color.png')
+img.save('img-with-logo-color/qr_code-color.png')

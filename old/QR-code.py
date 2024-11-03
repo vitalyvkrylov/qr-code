@@ -8,12 +8,12 @@ data3 = "http://vc.ru"
 data4 = "https://inf-ege.sdamgia.ru/"
 data5 = "https://inf-oge.sdamgia.ru/"
 
-name_qr_code0 = 'img/qr_0.png'
-name_qr_code1 = 'img/qr_1.png'
-name_qr_code2 = 'img/qr_2.png'
-name_qr_code3 = 'img/qr_3.png'
-name_qr_code4 = 'img/qr_4.png'
-name_qr_code5 = 'img/qr_5.png'
+name_qr_code0 = 'img-with-logo/qr_0.png'
+name_qr_code1 = 'img-with-logo/qr_1.png'
+name_qr_code2 = 'img-with-logo/qr_2.png'
+name_qr_code3 = 'img-with-logo/qr_3.png'
+name_qr_code4 = 'img-with-logo/qr_4.png'
+name_qr_code5 = 'img-with-logo/qr_5.png'
 
 # Генерация QR-кода
 qr0 = qrcode.QRCode(
