@@ -54,12 +54,11 @@ size = 100  # Размер сердца (размер области QR-кода
 draw_heart(draw, x_center, y_center, size / 10, heart_color)  # Рисуем сердце, уменьшая его размер для корректного отображения
 
 # Добавляем QR-код
-qr_data = "https://example.com"  # Данные для QR-кода (замените на ваши данные)
+qr_data = "https://ege-drive.ru"  # Данные для QR-кода (замените на ваши данные)
 qr_position = (width // 4 + 120, height // 4 + 15)  # Позиция QR-кода
 qr_size = (size + 10, size + 10)  # Размер QR-кода равен размеру сердца
 
 add_qr_code(image, qr_data, qr_position, qr_size)  # Добавляем QR-код на изображение
 
 # Сохраняем изображение
-image.save("heart_image_with_cropped_qr.png")  # Сохраняем изображение в файл
-image.show()  # Отображаем изображение
+image.save("qr/heart_with_qr.png")  # Сохраняем изображение в файл
