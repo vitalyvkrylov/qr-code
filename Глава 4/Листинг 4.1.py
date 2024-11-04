@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw  # Импортируем необходимые модули для работы с изображениями.
-from MyQR import myqr  # Импортируем библиотеку для генерации QR-кодов.
+from amzqr import amzqr
 import math  # Импортируем библиотеку для математических функций.
+
 
 def draw_star(draw, x_center, y_center, radius, color):  # Определяем функцию для рисования звезды.
     points = []  # Инициализируем список для хранения координат вершин звезды.
@@ -22,6 +23,10 @@ def draw_star(draw, x_center, y_center, radius, color):  # Определяем 
 
     draw.polygon(points, fill=color)  # Рисуем многоугольник (звезду) с заданным цветом.
 
+data_save = "img/star_image.png"
+data_qr = "qr/star_qr.png"
+url = "https://ege-drive.ru"
+
 # Параметры изображения
 image_width = 400  # Ширина изображения в пикселях.
 image_height = 400  # Высота изображения в пикселях.
@@ -30,22 +35,31 @@ star_color = "black"  # Цвет звезды.
 star_radius = 100  # Радиус звезды.
 
 # Создание изображения
-image = Image.new("RGB", (image_width, image_height), background_color)  # Создаем новое изображение с заданными размерами и цветом фона.
+image = Image.new("RGB", (image_width, image_height),
+                  background_color)  # Создаем новое изображение с заданными размерами и цветом фона.
 draw = ImageDraw.Draw(image)  # Создаем объект для рисования на изображении.
 
 # Рисование звезды
-draw_star(draw, image_width // 2, image_height // 2, star_radius, star_color)  # Вызываем функцию для рисования звезды в центре изображения.
+draw_star(draw, image_width // 2, image_height // 2, star_radius,
+          star_color)  # Вызываем функцию для рисования звезды в центре изображения.
 
 # Сохранение изображения
-image.save("img/star_image.png")  # Сохраняем изображение звезды в указанной папке с заданным именем.
+image.save(data_save)  # Сохраняем изображение звезды в указанной папке с заданным именем.
 
-myqr.run(  # Запускаем функцию создания QR-кода с заданными параметрами
-    words="http://ege-drive.ru",  # Ссылка, которая будет закодирована в QR-код
-    version=20,  # Устанавливаем размер QR-кода (от 1 до 40), 20 – более крупный QR-код
-    level="H",  # Уровень коррекции ошибок H (восстанавливает до 30% данных при повреждении)
-    picture="img/star_image.png",  # Изображение, которое будет наложено на QR-код
-    colorized=True,  # Цветной режим для QR-кода; если False, QR-код будет чёрно-белым
-    save_name='qr/star_qr.png',  # Имя файла для сохранения результата
-    contrast=3.0,  # Контрастность QR-кода и фона, где 1.0 — исходное значение
-    brightness=10.0  # Яркость QR-кода и фона, где 1.0 — исходное значение
+from amzqr import amzqr
+
+# Данные для кодирования
+data = url  # Ссылка или текст, который будет закодирован в QR-код
+
+# Настройка QR-кода
+amzqr.run(
+    words=data,  # Данные для кодирования
+    version=1,  # Версия QR-кода (1-40), 1 - минимальный размер
+    level='H',  # Уровень коррекции ошибок ('L', 'M', 'Q', 'H')
+    picture=data_save,  # Фоновое изображение в форме сердца
+    colorized=True,  # Разрешить цветные QR-коды
+    contrast=1.0,  # Контрастность фона
+    brightness=1.0,  # Яркость QR-кода
+    save_name=data_qr,  # Имя файла для сохранения
+    save_dir="."  # Путь к папке сохранения
 )
