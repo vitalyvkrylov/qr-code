@@ -33,9 +33,10 @@ image_height = 400  # Высота изображения в пикселях.
 background_color = "white"  # Цвет фона изображения.
 star_color = "black"  # Цвет звезды.
 star_radius = 100  # Радиус звезды.
+mode = "RGB"
 
 # Создание изображения
-image = Image.new("RGB", (image_width, image_height), background_color)  # Создаем новое изображение с заданными размерами и цветом фона.
+image = Image.new(mode, (image_width, image_height), background_color)  # Создаем новое изображение с заданными размерами и цветом фона.
 draw = ImageDraw.Draw(image)  # Создаем объект для рисования на изображении.
 
 # Рисование звезды
