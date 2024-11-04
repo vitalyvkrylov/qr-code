@@ -39,10 +39,7 @@ def add_qr_code(image, data, position, size):
 # Параметры изображения
 width, height = 400, 400  # Ширина и высота изображения
 background_color = (255, 255, 255)  # Цвет фона (белый)
-
-# Создаем новое изображение
-image = Image.new("RGB", (width, height), background_color)  # Создаем новое изображение с белым фоном
-draw = ImageDraw.Draw(image)  # Создаем объект для рисования на изображении
+mode = "RGB"
 
 # Параметры сердца
 heart_color = (255, 0, 0)  # Цвет сердца (красный)
@@ -50,15 +47,19 @@ x_center = width // 2  # Центр по оси X
 y_center = height // 2  # Центр по оси Y
 size = 100  # Размер сердца (размер области QR-кода)
 
-# Рисуем сердце
-draw_heart(draw, x_center, y_center, size / 10, heart_color)  # Рисуем сердце, уменьшая его размер для корректного отображения
+# Создаем новое изображение
+image = Image.new(mode, (width, height), background_color)  # Создаем новое изображение с белым фоном
+draw = ImageDraw.Draw(image)  # Создаем объект для рисования на изображении
 
-# Добавляем QR-код
-qr_data = "https://ege-drive.ru"  # Данные для QR-кода (замените на ваши данные)
+url = "https://ege-drive.ru"  # Данные для QR-кода (замените на ваши данные)
+# Данные для QR-кода
 qr_position = (width // 4 + 120, height // 4 + 15)  # Позиция QR-кода
 qr_size = (size + 10, size + 10)  # Размер QR-кода равен размеру сердца
 
-add_qr_code(image, qr_data, qr_position, qr_size)  # Добавляем QR-код на изображение
+# Рисуем сердце
+draw_heart(draw, x_center, y_center, size / 10, heart_color)  # Рисуем сердце, уменьшая его размер для корректного отображения
+image.save("img/heart.png")  # Сохраняем изображение в файл
 
+add_qr_code(image, url, qr_position, qr_size)  # Добавляем QR-код на изображение
 # Сохраняем изображение
 image.save("qr/heart_with_qr.png")  # Сохраняем изображение в файл
