@@ -1,19 +1,36 @@
-from amzqr import amzqr
+from PIL import Image, ImageDraw
+import math
 
-# Данные для кодирования
-data_save = "img/heart.pngg"  # Ссылка или текст, который будет закодирован в QR-код
-data_qr = "qr/heart_qr.png"
-url = "https://ege-drive.ru"
+# Функция для рисования сердца
+def draw_heart(draw, x_center, y_center, size, color):
+    points = []  # Инициализируем список для хранения координат точек сердца
 
-# Настройка QR-кода
-amzqr.run(
-    words=url,  # Данные для кодирования
-    version=1,  # Версия QR-кода (1-40), 1 - минимальный размер
-    level='H',  # Уровень коррекции ошибок ('L', 'M', 'Q', 'H')
-    picture=data_save,  # Фоновое изображение в форме сердца
-    colorized=True,  # Разрешить цветные QR-коды
-    contrast=1.0,  # Контрастность фона
-    brightness=1.0,  # Яркость QR-кода
-    save_name=data_qr,  # Имя файла для сохранения
-    save_dir="."  # Путь к папке сохранения
-)
+    # Цикл для создания точек по контуру сердца
+    for angle in range(360):  # Угол меняется от 0 до 359 градусов для создания замкнутого контура
+        theta = math.radians(angle)  # Преобразуем угол из градусов в радианы
+
+        # Вычисляем координаты точки на контуре сердца
+        x = x_center + size * 16 * math.sin(theta) ** 3
+        y = y_center - size * (13 * math.cos(theta) - 5 * math.cos(2 * theta) - 2 * math.cos(3 * theta) - math.cos(4 * theta))
+        points.append((x, y))  # Добавляем точку в список координат
+
+    # Рисуем контур сердца
+    draw.polygon(points, fill=color)
+
+# Основная часть программы
+# Создаем изображение размером 400x400 с белым фоном
+image_size = (400, 400)
+image = Image.new("RGB", image_size, "white")
+draw = ImageDraw.Draw(image)
+
+# Задаем центр и размер сердца
+x_center, y_center = 200, 200
+size = 10
+color = "red"
+
+# Вызываем функцию для рисования сердца
+draw_heart(draw, x_center, y_center, size, color)
+
+# Сохраняем и показываем изображение
+image.save("heart.png")
+
